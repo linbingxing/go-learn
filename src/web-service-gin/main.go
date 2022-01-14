@@ -3,6 +3,8 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"os"
+	"io"
 )
 
 type album struct {
@@ -44,10 +46,27 @@ func getAlbumByID(c *gin.Context){
 	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "album not found"})
 }
 
+func someJSON(c *gin.Context){
+	data := map[string]interface{}{
+		"lang": "GO语言",
+		"tag":  "<br>",
+	}
+
+	// will output : {"lang":"GO\u8bed\u8a00","tag":"\u003cbr\u003e"}
+	c.AsciiJSON(http.StatusOK, data)
+}
+
+
 func main() {
+	gin.DisableConsoleColor()
+
+	f,_ := os.Create("gin.log")
+	gin.DefaultWriter = io.MultiWriter(f)
+
 	router := gin.Default()
 	router.GET("/albums", getAlbums)
 	router.GET("/albums/:id", getAlbumByID)
+	router.GET("/someJSON",someJSON)
 	router.POST("/albums", postAlbums)
 	router.Run("localhost:8080")
 }
