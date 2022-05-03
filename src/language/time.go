@@ -16,4 +16,8 @@ func main() {
 	fmt.Printf("时=%v\n", now.Hour())
 	fmt.Printf("分=%v\n", now.Minute())
 	fmt.Printf("秒=%v\n", now.Second())
+
+	fmt.Println()
+
+	fmt.Println(now.Format(""))
 }
