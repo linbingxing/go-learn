@@ -8,6 +8,7 @@ import (
 
 var userId int
 var userPwd string
+var userName string
 
 func main() {
 	var key int
@@ -34,6 +35,12 @@ func main() {
 			up.Login(userId, userPwd)
 		case 2:
 			fmt.Println("注册")
+			fmt.Printf("请输入用户id")
+			fmt.Scanf("%d\n", &userId)
+			fmt.Printf("请输入密码：")
+			fmt.Scanf("%s\n", &userPwd)
+			fmt.Printf("请输入用户名：")
+			fmt.Scanf("%s\n", &userName)
 		case 3:
 			fmt.Println("退出")
 			os.Exit(0)

@@ -20,3 +20,11 @@ type LoginResMsg struct {
 	Code  int    `json:"code"`
 	Error string `json:"error"`
 }
+type RegisterMsg struct {
+	User User `json:"user"`
+}
+
+type RegisterResMsg struct {
+	Code  int    `json:"code"`
+	Error string `json:"error"`
+}
